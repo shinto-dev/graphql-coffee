@@ -23,11 +23,11 @@ export class Coffee {
 
 export abstract class IQuery {
     coffees: Coffee[];
-    coffee?: Nullable<Coffee>;
+    coffee: Coffee;
 }
 
 export abstract class IMutation {
-    createCoffee?: Nullable<Coffee>;
+    createCoffee: Coffee;
 }
 
 type Nullable<T> = T | null;

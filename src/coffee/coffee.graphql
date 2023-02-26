@@ -24,9 +24,9 @@ input CreateCoffeeInput {
 
 type Query {
     coffees: [Coffee!]!
-    coffee(id: ID!): Coffee
+    coffee(id: ID!): Coffee!
 }
 
 type Mutation {
-    createCoffee(input: CreateCoffeeInput!): Coffee
+    createCoffee(input: CreateCoffeeInput!): Coffee!
 }

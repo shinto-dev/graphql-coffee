@@ -18,7 +18,7 @@ query  GetCoffee($coffeeID: ID!) {
 }
 
 {
-  "coffeeID": "1"
+  "coffeeID": 2
 }
 
 ###
@@ -26,11 +26,16 @@ GRAPHQL http://localhost:3000/graphql
 
 mutation CreateCoffee {
   createCoffee(input: {
-    name: "test",
-    brand: "test",
-    flavors: ["test"]
+    name: "Shipwreck Roast",
+    brand: "Buddybrew",
+    flavors: ["chocolate", "vanilla"]
   }) {
-    id
-    name
+    id,
+    name,
+    brand,
+    flavors
   }
 }
+
+###
+
