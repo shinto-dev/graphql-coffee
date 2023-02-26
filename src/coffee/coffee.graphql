@@ -1,5 +1,12 @@
 # ❗️ (exclamation point) means non-nullable AKA: REQUIRED
+
+"""
+Coffee model
+"""
 type Coffee {
+    """
+    This is the unique identifier for a coffee
+    """
     id: ID!  # ID (unique identifier) - non-nullable (required)
     name: String!
     brand: String!
