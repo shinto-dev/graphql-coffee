@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { CoffeeResolver } from './coffee/coffee.resolver';
+import { CoffeeModule } from './coffee/coffee.module';
 
 @Module({
   imports: [
@@ -11,8 +9,8 @@ import { CoffeeResolver } from './coffee/coffee.resolver';
       driver: ApolloDriver, // 👈 Using the ApolloDriver
       typePaths: ['./**/*.graphql'], // 👈 where our (.)graphql files are located
     }),
+    CoffeeModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, CoffeeResolver],
+  providers: [],
 })
 export class AppModule {}
