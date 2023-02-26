@@ -7,3 +7,12 @@ query  {
   }
 }
 
+###
+GRAPHQL http://localhost:3000/graphql
+
+query  {
+  coffee(id: 1) {
+    id
+    name
+  }
+}
