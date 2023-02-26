@@ -144,3 +144,33 @@ It wouldn't be a good idea to pass these dynamic arguments directly in the query
     }
     ```
 
+## Connecting database
+Install the following dependencies:
+```shell
+npm install @nestjs/typeorm typeorm pg
+```
+
+Add the following code to `app.module.ts`:
+```typescript
+@Module({
+  imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver, // 👈 Using the ApolloDriver
+      typePaths: ['./**/*.graphql'], // 👈 where our (.)graphql files are located
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'pass123',
+      database: 'postgres',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    CoffeeModule,
+  ],
+  providers: [],
+})
+export class AppModule {}
+```
