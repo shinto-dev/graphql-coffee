@@ -1,5 +1,5 @@
 start:
-	npx run start:dev
+	npm run start:dev
 
 graphql:
 	npx ts-node src/generate-types

@@ -1,4 +1,4 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Coffee } from '../graphql';
 import { ParseIntPipe } from '@nestjs/common';
 
@@ -10,6 +10,13 @@ export class CoffeeResolver {
   }
   @Query('coffee')
   async findOneById(@Args('id', ParseIntPipe) id: number): Promise<Coffee> {
+    return null;
+  }
+
+  @Mutation('createCoffee')
+  async create(
+    @Args('createCoffeeInput') createCoffeeInput: Coffee,
+  ): Promise<Coffee> {
     return null;
   }
 }

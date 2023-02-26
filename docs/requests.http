@@ -16,3 +16,17 @@ query  {
     name
   }
 }
+
+###
+GRAPHQL http://localhost:3000/graphql
+
+mutation  {
+  createCoffee(input: {
+    name: "test",
+    brand: "test",
+    flavors: ["test"]
+  }) {
+    id
+    name
+  }
+}
