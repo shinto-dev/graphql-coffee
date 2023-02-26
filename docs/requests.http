@@ -1,6 +1,6 @@
 GRAPHQL http://localhost:3000/graphql
 
-query  {
+query  Coffees {
   coffees {
     id
     name
@@ -10,17 +10,21 @@ query  {
 ###
 GRAPHQL http://localhost:3000/graphql
 
-query  {
-  coffee(id: 1) {
+query  GetCoffee($coffeeID: ID!) {
+  coffee(id: $coffeeID) {
     id
     name
   }
 }
 
+{
+  "coffeeID": "1"
+}
+
 ###
 GRAPHQL http://localhost:3000/graphql
 
-mutation  {
+mutation CreateCoffee {
   createCoffee(input: {
     name: "test",
     brand: "test",

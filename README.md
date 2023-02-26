@@ -124,4 +124,23 @@ GraphQL comes with a set of default scalar types. These are the built-in types t
 | ID | The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String; however, defining it as an ID signifies that it is not intended to be human‐readable. |
 
 
+## GraphQL variables
+
+It wouldn't be a good idea to pass these dynamic arguments directly in the query string, because then our client-side code would need to dynamically manipulate the query string at runtime, and serialize it into a GraphQL-specific format. Instead, GraphQL has a first-class way to factor dynamic values out of the query, and pass them as a separate dictionary. These values are called variables.
+
+    ```graphql
+    query GetCoffee($id: ID!) {
+      coffee(id: $id) {
+        id
+        name
+        brand
+        flavors
+      }
+    }
+    ```
+    ```json
+    {
+      "id": "1"
+    }
+    ```
 
