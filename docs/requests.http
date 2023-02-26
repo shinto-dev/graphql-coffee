@@ -1,0 +1,9 @@
+GRAPHQL http://localhost:3000/graphql
+
+query  {
+  coffees {
+    id
+    name
+  }
+}
+

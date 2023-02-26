@@ -8,4 +8,7 @@ definitionsFactory.generate({
   outputAs: 'class',
   watch: true, // 👈 watch for changes
   skipResolverArgs: true,
+  defaultTypeMapping: {
+    ID: 'number', // 👈 map ID to number, default is string.
+  },
 });
