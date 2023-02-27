@@ -38,4 +38,14 @@ mutation CreateCoffee {
 }
 
 ###
+GRAPHQL http://localhost:3000/graphql
 
+mutation deleteCoffee($coffeeID: ID!) {
+  deleteCoffee(id: $coffeeID) {
+      name
+  }
+}
+
+{
+  "coffeeID": 4
+}

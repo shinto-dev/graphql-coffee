@@ -24,4 +24,19 @@ export class CoffeeResolver {
   ): Promise<GraphQLTypes.Coffee> {
     return this.coffeeService.create(createCoffeeInput);
   }
+
+  @Mutation('updateCoffee')
+  async update(
+    @Args('id', ParseIntPipe) id: number,
+    @Args('input') updateCoffeeInput: GraphQLTypes.UpdateCoffeeInput,
+  ): Promise<GraphQLTypes.Coffee> {
+    return this.coffeeService.update(id, updateCoffeeInput);
+  }
+
+  @Mutation('deleteCoffee')
+  async remove(
+    @Args('id', ParseIntPipe) id: number,
+  ): Promise<GraphQLTypes.Coffee> {
+    return this.coffeeService.remove(id);
+  }
 }
