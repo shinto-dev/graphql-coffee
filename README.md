@@ -203,3 +203,79 @@ export class UpdateCoffeeInput extends GraphQLTypes.UpdateCoffeeInput {
 
 🔔🔔 Make sure to update references of `GraphQLTypes.CreateCoffeeInput` (and Update) to
 CreateCoffeeInput & UpdateCoffeeInput respectively - in both resolver and service files.
+
+## Adding relations
+Let's add a relation between `Coffee` and `Flavor` entities. To do that, open `coffee.entity.ts` and add the following code:
+```typescript
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Flavor } from '../../flavors/entities/flavor.entity';
+
+@Entity()
+export class Coffee {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  brand: string;
+
+  @Column({ nullable: true })
+  description: string;
+
+  @Column()
+  recommendations: number;
+
+  @JoinTable()
+  @ManyToMany(
+    type => Flavor,
+    flavor => flavor.coffees,
+    {
+      cascade: true,
+    },
+  )
+  flavors: Flavor[];
+}
+```
+
+and open `flavor.entity.ts` and add the following code:
+```typescript
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Coffee } from '../../coffees/entities/coffee.entity';
+
+@Entity()
+export class Flavor {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @JoinTable()
+  @ManyToMany(
+    type => Coffee,
+    coffee => coffee.flavors,
+  )
+  coffees: Coffee[];
+}
+```
+
+Now let's update the graphql schema to reflect the changes we made to our entities. Open `src/coffees/coffees.graphql` and add the following code:
+```graphql
+type Coffee {
+  id: ID!
+  name: String!
+  brand: String!
+  description: String
+  recommendations: Int!
+  flavors: [Flavor!]!
+}
+
+type Flavor {
+  id: ID!
+  name: String!
+  coffees: [Coffee!]!
+}
+```
+

@@ -4,6 +4,9 @@ query  Coffees {
   coffees {
     id
     name
+    flavors {
+       name
+    }
   }
 }
 
@@ -14,11 +17,14 @@ query  GetCoffee($coffeeID: ID!) {
   coffee(id: $coffeeID) {
     id
     name
+    flavors {
+        name
+    }
   }
 }
 
 {
-  "coffeeID": 2
+  "coffeeID": 10
 }
 
 ###
@@ -33,7 +39,9 @@ mutation CreateCoffee {
     id,
     name,
     brand,
-    flavors
+    flavors {
+        name
+    }
   }
 }
 

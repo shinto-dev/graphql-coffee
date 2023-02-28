@@ -10,7 +10,12 @@ type Coffee {
     id: ID!  # ID (unique identifier) - non-nullable (required)
     name: String!
     brand: String!
-    flavors: [String!]!
+    flavors: [Flavor!]
+}
+
+type Flavor {
+    id: ID!
+    name: String!
 }
 
 """
