@@ -1,8 +1,7 @@
-import * as GraphQLTypes from '../../graphql-types/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('coffees')
-export class Coffee implements GraphQLTypes.Coffee {
+export class Coffee {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()

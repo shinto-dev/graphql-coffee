@@ -174,3 +174,32 @@ Add the following code to `app.module.ts`:
 })
 export class AppModule {}
 ```
+## Auto validate input 
+To auto validate input, we will use `class-validator` package. To install it, run the following command:
+```shell
+npm i class-validator class-transformer
+```
+
+```typescript
+// 📝 create-coffee.input
+import { MinLength } from 'class-validator';
+import * as GraphQLTypes from '../../graphql-types';
+
+export class CreateCoffeeInput extends GraphQLTypes.CreateCoffeeInput {
+  @MinLength(3)
+  name: string;
+}
+
+// 📝 update-coffee.input
+import { MinLength } from 'class-validator';
+import * as GraphQLTypes from '../../graphql-types';
+
+export class UpdateCoffeeInput extends GraphQLTypes.UpdateCoffeeInput {
+  @IsOptional()
+  @MinLength(3)
+  name: string;
+}
+```
+
+🔔🔔 Make sure to update references of `GraphQLTypes.CreateCoffeeInput` (and Update) to
+CreateCoffeeInput & UpdateCoffeeInput respectively - in both resolver and service files.
