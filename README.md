@@ -278,4 +278,38 @@ type Flavor {
   coffees: [Coffee!]!
 }
 ```
+## Using field resolvers
+
+In real world applications, we may need to resolve some of the properties on-demand (meaning: only when they are requested).
+
+Field resolvers can be very useful when we are resolving SQL relations (take as an example, our existing Coffee & Flavor relation).
+
+Let’s create a new CoffeeFlavorsResolver class using the Nest CLI:
+```shell
+nest g resolver coffees/coffee-flavors --flat
+```
+
+```typescript
+// 📝 coffee-flavors.resolver 
+@Resolver('Coffee')
+export class CoffeeFlavorsResolver {
+  constructor(
+    // ⚙️ Inject the Flavor Repository
+    @InjectRepository(Flavor)
+    private readonly flavorsRepository: Repository<Flavor>,
+  ) {}
+
+  @ResolveField('flavors')
+  async getFlavorsOfCoffee(@Parent() coffee: Coffee) {
+    // Using the injected repository, 
+    // let’s retrieve ALL flavors that belong to a “parent coffee”.
+    return this.flavorsRepository
+      .createQueryBuilder('flavor')
+      .innerJoin('flavor.coffees', 'coffees', 'coffees.id = :coffeeId', {
+        coffeeId: coffee.id,
+      })
+      .getMany();
+  }
+}
+```
 
