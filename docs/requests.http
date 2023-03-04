@@ -8,6 +8,7 @@ query  Coffees {
        id
        name
     }
+    createdAt
   }
 }
 
@@ -22,6 +23,7 @@ query  GetCoffee($coffeeID: ID!) {
         id
         name
     }
+    createdAt
   }
 }
 
