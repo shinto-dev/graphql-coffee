@@ -61,3 +61,15 @@ mutation deleteCoffee($coffeeID: ID!) {
 {
   "coffeeID": 4
 }
+
+###
+GRAPHQL http://localhost:3000/graphql
+
+query allDrink{
+  drinks {
+    name
+    ... on Coffee {
+      brand
+    }
+  }
+}

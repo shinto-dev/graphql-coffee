@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import { DateScalar } from './common/scalars/date.scalar';
+import { DrinkResolver } from './drink/drink.resolver';
 
 @Module({
   imports: [
@@ -37,6 +38,6 @@ import { DateScalar } from './common/scalars/date.scalar';
     }),
     CoffeeModule,
   ],
-  providers: [DateScalar],
+  providers: [DateScalar, DrinkResolver],
 })
 export class AppModule {}
